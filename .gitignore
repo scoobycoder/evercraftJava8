@@ -4,3 +4,4 @@ bin/**
 .classpath
 .DS_Store
 .gradle/**
+/bin/
