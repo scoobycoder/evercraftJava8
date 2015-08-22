@@ -39,4 +39,10 @@ public class SpockTest{
 		assertEquals(1, underTest.getNeutral());
 	}
 	
+	@Test
+	public void spockHasArmorWhenHePlaysAGladiator() {
+		assertEquals(10, underTest.getArmor());
+		assertEquals(5, underTest.getArmorHitPoints());
+	}
+	
 }

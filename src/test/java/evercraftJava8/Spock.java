@@ -1,10 +1,15 @@
 package evercraftJava8;
 
-public class Spock extends CraftCharacter implements Alignment {
+public class Spock extends CraftCharacter implements Alignment{
 	private String name = "Spock";
 	private int evil = 0;
 	private int good = 1000;
 	private int neutral = 0;
+	private Armor armor;
+	
+	public Spock(Armor armor) {
+		this.armor = armor;
+	}
 	
 	@Override
 	public String getName() {
@@ -39,6 +44,14 @@ public class Spock extends CraftCharacter implements Alignment {
 	@Override
 	public void setNeutral(int newNeutral) {
 		neutral = newNeutral;
+	}
+
+	public int getArmor() {
+		return armor.getArmor();
+	}
+
+	public int getArmorHitPoints() {
+		return armor.getArmorHitPoints();
 	}
 
 	
