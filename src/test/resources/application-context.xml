@@ -6,6 +6,5 @@
 
 	<bean id="craftCharacter" class="evercraftJava8.CraftCharacter"/>
 	<bean id="spock" class="evercraftJava8.Spock"/>
-	<bean id="alignment" class="evercraftJava8.Alignment"/>
 
 </beans>

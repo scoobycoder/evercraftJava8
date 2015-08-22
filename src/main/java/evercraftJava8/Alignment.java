@@ -1,21 +1,10 @@
 package evercraftJava8;
 
-public class Alignment {
-
-	private int good = 200;
-	private int evil = 200;
-	private int neutral = 200;
-
-	public int getGood() {
-		return good;
-	}
-
-	public Object getEvil() {
-		return evil;
-	}
-
-	public Object getNeutral() {
-		return neutral;
-	}
-
+public interface Alignment {
+	public int getGood();
+	public int getEvil();
+	public int getNeutral();
+	public void setGood(int newGood);
+	public void setEvil(int newEvil);
+	public void setNeutral(int newNeutral);
 }

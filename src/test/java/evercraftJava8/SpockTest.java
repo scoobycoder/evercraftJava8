@@ -22,4 +22,21 @@ public class SpockTest{
 		assertEquals("Spock", underTest.getName());
 	}
 	
+	@Test
+	public void spockIsOnlyGood() {
+		assertEquals(1000, underTest.getGood());
+		assertEquals(0, underTest.getEvil());
+	}
+	
+	@Test
+	public void sometimesSpockGoesToMirrorUniverseAndIsEvilOnly() {
+		underTest.setGood(0);
+		underTest.setEvil(1000);
+		underTest.setNeutral(1);
+		
+		assertEquals(0, underTest.getGood());
+		assertEquals(1000, underTest.getEvil());
+		assertEquals(1, underTest.getNeutral());
+	}
+	
 }
