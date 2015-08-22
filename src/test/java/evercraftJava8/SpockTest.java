@@ -6,22 +6,20 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class AlignmentTest {
+public class SpockTest{
 
 	private ClassPathXmlApplicationContext applicationContext;
-	private Alignment underTest;
+	private Spock underTest;
 
 	@Before
 	public void setup() {
 		applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
-		underTest = (Alignment) applicationContext.getBean("alignment");
+		underTest = (Spock) applicationContext.getBean("spock");
 	}
 	
 	@Test
-	public void shouldReturnCurrentAlignmentValue() {
-		assertEquals(200, underTest.getGood());
-		assertEquals(200, underTest.getEvil());
-		assertEquals(200, underTest.getNeutral());
+	public void spockKnowsHisName() {
+		assertEquals("Spock", underTest.getName());
 	}
 	
 }
