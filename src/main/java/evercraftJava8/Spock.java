@@ -8,6 +8,7 @@ public class Spock extends CraftCharacter implements Alignment{
 	private Armor armor;
 	
 	public Spock(Armor armor) {
+		super(armor);
 		this.armor = armor;
 	}
 	
@@ -46,12 +47,16 @@ public class Spock extends CraftCharacter implements Alignment{
 		neutral = newNeutral;
 	}
 
-	public int getArmor() {
+	public int getArmorLevel() {
 		return armor.getArmor();
 	}
 
 	public int getArmorHitPoints() {
 		return armor.getArmorHitPoints();
+	}
+
+	public boolean attack(RollingDice dice, CraftCharacter opponent) {
+		return dice.roll() > opponent.getArmor().getArmor();
 	}
 
 	

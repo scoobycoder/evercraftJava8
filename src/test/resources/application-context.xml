@@ -4,10 +4,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="craftCharacter" class="evercraftJava8.CraftCharacter"/>
+	<bean id="craftCharacter" class="evercraftJava8.CraftCharacter">
+		<constructor-arg ref="plateArmor"/>
+	</bean>
 	<bean id="spock" class="evercraftJava8.Spock">
 		<constructor-arg ref="plateArmor"/>
 	</bean>
 	<bean id="plateArmor" class="evercraftJava8.PlateArmor"/>
+	<bean id="rollingDice" class="evercraftJava8.RollingDice"/>
+	
 
 </beans>
