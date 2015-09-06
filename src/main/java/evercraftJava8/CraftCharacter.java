@@ -24,8 +24,22 @@ public class CraftCharacter {
 		return dice.roll() > opponent.getArmor().getArmor();
 	}
 	
-	public boolean isAttacked(RollingDice dice) {
+	public int isAttacked(RollingDice dice) {
+		if (hasBonusDamage(dice))
+			return 2;
+		
+		if (rollGreaterThanArmor(dice))
+			return 1;
+		
+		return 0;
+	}
+
+	private boolean rollGreaterThanArmor(RollingDice dice) {
 		return dice.roll() > armor.getArmor();
+	}
+
+	private boolean hasBonusDamage(RollingDice dice) {
+		return dice.roll() == 20;
 	}
 	
 }

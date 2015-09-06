@@ -14,6 +14,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpockTest{
 
+	private static final int NO_DAMAGE = 0;
+	private static final int DAMAGE_OF_ONE = 1;
+
 	private ClassPathXmlApplicationContext applicationContext;
 	
 	@Mock
@@ -103,7 +106,7 @@ public class SpockTest{
 		when(mockedDice.roll()).thenReturn(15);
 		when(mockedArmor.getArmor()).thenReturn(10);
 		
-		assertEquals(true, underTest.isAttacked(mockedDice));
+		assertEquals(DAMAGE_OF_ONE, underTest.isAttacked(mockedDice));
 	}
 	
 	@Test
@@ -111,7 +114,7 @@ public class SpockTest{
 		when(mockedDice.roll()).thenReturn(5);
 		when(mockedArmor.getArmor()).thenReturn(10);
 		
-		assertEquals(false, underTest.isAttacked(mockedDice));
+		assertEquals(NO_DAMAGE, underTest.isAttacked(mockedDice));
 	}
 	
 }
