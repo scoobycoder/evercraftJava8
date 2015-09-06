@@ -1,6 +1,6 @@
 package evercraftJava8;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -10,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import static org.mockito.Mockito.when;
 
 
 public class SpockTest{
@@ -97,6 +96,22 @@ public class SpockTest{
 		underTest.attack(mockedDice, mockedOpponent);
 		
 		assertEquals(false, underTest.attack(mockedDice, mockedOpponent));
+	}
+	
+	@Test
+	public void spockTakesHitAndSuffersDamage() {
+		when(mockedDice.roll()).thenReturn(15);
+		when(mockedArmor.getArmor()).thenReturn(10);
+		
+		assertEquals(true, underTest.isAttacked(mockedDice));
+	}
+	
+	@Test
+	public void spockTakesHitAndSuffersNoDamage() {
+		when(mockedDice.roll()).thenReturn(5);
+		when(mockedArmor.getArmor()).thenReturn(10);
+		
+		assertEquals(false, underTest.isAttacked(mockedDice));
 	}
 	
 }

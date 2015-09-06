@@ -54,10 +54,5 @@ public class Spock extends CraftCharacter implements Alignment{
 	public int getArmorHitPoints() {
 		return armor.getArmorHitPoints();
 	}
-
-	public boolean attack(RollingDice dice, CraftCharacter opponent) {
-		return dice.roll() > opponent.getArmor().getArmor();
-	}
-
 	
 }

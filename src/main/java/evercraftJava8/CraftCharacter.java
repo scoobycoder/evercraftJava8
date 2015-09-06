@@ -19,5 +19,13 @@ public class CraftCharacter {
 	public void setArmor(Armor armor) {
 		this.armor = armor;
 	}
-
+	
+	public boolean attack(RollingDice dice, CraftCharacter opponent) {
+		return dice.roll() > opponent.getArmor().getArmor();
+	}
+	
+	public boolean isAttacked(RollingDice dice) {
+		return dice.roll() > armor.getArmor();
+	}
+	
 }
