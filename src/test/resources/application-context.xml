@@ -6,12 +6,15 @@
 
 	<bean id="craftCharacter" class="evercraftJava8.CraftCharacter">
 		<constructor-arg ref="plateArmor"/>
+		<constructor-arg ref="startingHealth"/>
 	</bean>
 	<bean id="spock" class="evercraftJava8.Spock">
 		<constructor-arg ref="plateArmor"/>
+		<constructor-arg ref="startingHealth"/>
 	</bean>
+	
 	<bean id="plateArmor" class="evercraftJava8.PlateArmor"/>
 	<bean id="rollingDice" class="evercraftJava8.RollingDice"/>
-	
+	<bean id="startingHealth" class="evercraftJava8.Health"/>
 
 </beans>

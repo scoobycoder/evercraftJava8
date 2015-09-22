@@ -14,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpockTest{
 
+	private static final int DAMAGE_OF_TWO = 2;
 	private static final int NO_DAMAGE = 0;
 	private static final int DAMAGE_OF_ONE = 1;
 
@@ -115,6 +116,26 @@ public class SpockTest{
 		when(mockedArmor.getArmor()).thenReturn(10);
 		
 		assertEquals(NO_DAMAGE, underTest.isAttacked(mockedDice));
+	}
+	
+	@Test
+	public void spockTakesDoubleDamageFromRollOf20() {
+		when(mockedDice.roll()).thenReturn(20);
+		
+		assertEquals(DAMAGE_OF_TWO, underTest.isAttacked(mockedDice));
+	}
+	
+	@Test
+	public void whenSpockRunsOutOfHealthHeDies() {
+		when(mockedDice.roll()).thenReturn(20);
+		attackedTimes(mockedDice, 5);
+		
+		assertEquals(0, underTest.getHealth());
+	}
+
+	private void attackedTimes(RollingDice dice, int times) {
+		for (int i = 0; i < times; i++)
+			underTest.isAttacked(dice);
 	}
 	
 }

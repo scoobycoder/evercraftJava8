@@ -6,10 +6,12 @@ public class Spock extends CraftCharacter implements Alignment{
 	private int good = 1000;
 	private int neutral = 0;
 	private Armor armor;
+	private Health health;
 	
-	public Spock(Armor armor) {
-		super(armor);
+	public Spock(Armor armor, Health startingHealth) {
+		super(armor, startingHealth);
 		this.armor = armor;
+		this.health = startingHealth;
 	}
 	
 	@Override
@@ -53,6 +55,10 @@ public class Spock extends CraftCharacter implements Alignment{
 
 	public int getArmorHitPoints() {
 		return armor.getArmorHitPoints();
+	}
+
+	public int getHealth() {
+		return health.getValue();
 	}
 	
 }

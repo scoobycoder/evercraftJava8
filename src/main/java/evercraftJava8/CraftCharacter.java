@@ -3,9 +3,11 @@ package evercraftJava8;
 public class CraftCharacter {
 	private String name = "Name";
 	private Armor armor;
+	private Health health;
 
-	public CraftCharacter(Armor armor) {
+	public CraftCharacter(Armor armor, Health startingHealth) {
 		this.setArmor(armor);
+		this.health = startingHealth;
 	}
 	
 	public String getName() {
@@ -25,11 +27,15 @@ public class CraftCharacter {
 	}
 	
 	public int isAttacked(RollingDice dice) {
-		if (hasBonusDamage(dice))
+		if (hasBonusDamage(dice)){
+			this.health.setValue(health.getValue() - 2);
 			return 2;
+		}
 		
-		if (rollGreaterThanArmor(dice))
+		if (rollGreaterThanArmor(dice)) {
+			this.health.setValue(health.getValue() - 1);
 			return 1;
+		}
 		
 		return 0;
 	}
