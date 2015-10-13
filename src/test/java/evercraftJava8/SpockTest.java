@@ -31,6 +31,8 @@ public class SpockTest{
 	private Armor mockedArmor;
 	@Mock
 	private Puzzle mockedPuzzle;
+	@Mock
+	private Joke mockedJoke;
 
 	@InjectMocks
 	private Spock underTest;
@@ -142,6 +144,13 @@ public class SpockTest{
 		when(mockedPuzzle.difficulty()).thenReturn(19);
 		
 		assertThat(underTest.completePuzzle(mockedPuzzle), is("Success"));
+	}
+	
+	@Test
+	public void spockCannotTellAJoke() {
+		when(mockedJoke.difficulty()).thenReturn(5);
+		
+		assertThat(underTest.jokeCreatesLaughs(mockedJoke), is("Failure"));
 	}
 
 	private void attackedTimes(RollingDice dice, int times) {

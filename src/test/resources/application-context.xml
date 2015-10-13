@@ -21,6 +21,7 @@
 	
 	<bean id="spockAbilities" class="evercraftJava8.Abilities">
 		<property name="intelligence" value="20" />
+		<property name="charisma" value="2" />
 	</bean>
 
 </beans>

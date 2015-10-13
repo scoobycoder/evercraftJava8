@@ -72,4 +72,13 @@ public class Spock extends CraftCharacter implements Alignment {
 		return result;
 	}
 
+	public String jokeCreatesLaughs(Joke joke) {
+		String result = "Failure";
+		
+		if (abilities.getCharisma() > joke.difficulty())
+			result = "Success";
+
+		return result;
+	}
+
 }
