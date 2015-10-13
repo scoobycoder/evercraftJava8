@@ -16,5 +16,6 @@
 	<bean id="plateArmor" class="evercraftJava8.PlateArmor"/>
 	<bean id="rollingDice" class="evercraftJava8.RollingDice"/>
 	<bean id="startingHealth" class="evercraftJava8.Health"/>
+	<bean id="abilities" class="evercraftJava8.Abilities"/>
 
 </beans>
