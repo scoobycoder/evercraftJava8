@@ -3,11 +3,11 @@ package evercraftJava8;
 public class Abilities {
 
 	private int strength = 10;
-	private int charisma = 0;
-	private int dexterity = 5;
-	private int constitution = 7;
-	private int wisdom = 15;
-	private int intelligence = 20;
+	private int charisma = 10;
+	private int dexterity = 10;
+	private int constitution = 10;
+	private int wisdom = 10;
+	private int intelligence = 10;
 
 	public int getStrength() {
 		return strength;

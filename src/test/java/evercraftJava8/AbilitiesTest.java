@@ -24,11 +24,11 @@ public class AbilitiesTest {
 	@Test
 	public void abilitiesShouldIncludeAllAbilities() {
 		assertThat(underTest.getStrength(), is(10));
-		assertThat(underTest.getDexterity(), is(5));
-		assertThat(underTest.getConstitution(), is(7));
-		assertThat(underTest.getWisdom(), is(15));
-		assertThat(underTest.getIntelligence(), is(20));
-		assertThat(underTest.getCharisma(), is(0));
+		assertThat(underTest.getDexterity(), is(10));
+		assertThat(underTest.getConstitution(), is(10));
+		assertThat(underTest.getWisdom(), is(10));
+		assertThat(underTest.getIntelligence(), is(10));
+		assertThat(underTest.getCharisma(), is(10));
 	}
 	
 }
