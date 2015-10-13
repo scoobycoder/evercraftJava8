@@ -14,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpockTest{
 
+	private static final int DEAD = 0;
 	private static final int DAMAGE_OF_TWO = 2;
 	private static final int NO_DAMAGE = 0;
 	private static final int DAMAGE_OF_ONE = 1;
@@ -130,7 +131,7 @@ public class SpockTest{
 		when(mockedDice.roll()).thenReturn(20);
 		attackedTimes(mockedDice, 5);
 		
-		assertEquals(0, underTest.getHealth());
+		assertEquals(DEAD, underTest.getHealth());
 	}
 
 	private void attackedTimes(RollingDice dice, int times) {
