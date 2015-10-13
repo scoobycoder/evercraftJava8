@@ -1,5 +1,7 @@
 package evercraftJava8;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -27,10 +29,11 @@ public class SpockTest{
 	private CraftCharacter mockedOpponent;
 	@Mock
 	private Armor mockedArmor;
+	@Mock
+	private Puzzle mockedPuzzle;
 
 	@InjectMocks
 	private Spock underTest;
-
 
 
 	@Before
@@ -132,6 +135,13 @@ public class SpockTest{
 		attackedTimes(mockedDice, 5);
 		
 		assertEquals(DEAD, underTest.getHealth());
+	}
+	
+	@Test
+	public void spockCanCompleteDifficultPuzzles() {
+		when(mockedPuzzle.difficulty()).thenReturn(19);
+		
+		assertThat(underTest.completePuzzle(mockedPuzzle), is("Success"));
 	}
 
 	private void attackedTimes(RollingDice dice, int times) {
