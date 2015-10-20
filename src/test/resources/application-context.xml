@@ -8,20 +8,30 @@
 		<constructor-arg ref="plateArmor"/>
 		<constructor-arg ref="startingHealth"/>
 	</bean>
+	
 	<bean id="spock" class="evercraftJava8.Spock">
 		<constructor-arg ref="plateArmor"/>
 		<constructor-arg ref="startingHealth"/>
-		<constructor-arg ref="spockAbilities"/>
+		<constructor-arg ref="abilities"/>
+	</bean>
+	
+	<bean id="abilities" class="evercraftJava8.Abilities">
+		<constructor-arg ref="intelligence"/>
+		<constructor-arg ref="charisma"/>
 	</bean>
 	
 	<bean id="plateArmor" class="evercraftJava8.PlateArmor"/>
 	<bean id="rollingDice" class="evercraftJava8.RollingDice"/>
 	<bean id="startingHealth" class="evercraftJava8.Health"/>
-	<bean id="abilities" class="evercraftJava8.Abilities"/>
 	
-	<bean id="spockAbilities" class="evercraftJava8.Abilities">
-		<property name="intelligence" value="20" />
-		<property name="charisma" value="2" />
+	<bean id="intelligence" class="evercraftJava8.Intelligence">
+		<property name="level" value="20" />
+		<property name="abilityName" value="intelligence" />
+	</bean>
+	
+	<bean id="charisma" class="evercraftJava8.Charisma">
+		<property name="level" value="5" />
+		<property name="abilityName" value="charisma" />
 	</bean>
 
 </beans>
