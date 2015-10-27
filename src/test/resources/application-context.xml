@@ -9,9 +9,7 @@
 		<constructor-arg ref="startingHealth" />
 	</bean>
 
-	<bean id="spock" class="evercraftJava8.Spock">
-		<constructor-arg ref="plateArmor" />
-		<constructor-arg ref="startingHealth" />
+	<bean id="spock" class="evercraftJava8.Spock" parent="craftCharacter" >
 		<constructor-arg ref="abilities" />
 		<constructor-arg ref="alignment" />
 	</bean>
