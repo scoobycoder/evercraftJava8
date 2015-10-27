@@ -5,30 +5,50 @@
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="craftCharacter" class="evercraftJava8.CraftCharacter">
-		<constructor-arg ref="plateArmor"/>
-		<constructor-arg ref="startingHealth"/>
+		<constructor-arg ref="plateArmor" />
+		<constructor-arg ref="startingHealth" />
 	</bean>
-	
+
 	<bean id="spock" class="evercraftJava8.Spock">
-		<constructor-arg ref="plateArmor"/>
-		<constructor-arg ref="startingHealth"/>
-		<constructor-arg ref="abilities"/>
+		<constructor-arg ref="plateArmor" />
+		<constructor-arg ref="startingHealth" />
+		<constructor-arg ref="abilities" />
+		<constructor-arg ref="alignment" />
 	</bean>
-	
+
+	<bean id="evilSpock" class="evercraftJava8.Spock">
+		<constructor-arg ref="plateArmor" />
+		<constructor-arg ref="startingHealth" />
+		<constructor-arg ref="abilities" />
+		<constructor-arg ref="evilAlignment" />
+	</bean>
+
+	<bean id="alignment" class="evercraftJava8.Alignment">
+		<constructor-arg name="good" value="1000" />
+		<constructor-arg name="evil" value="0" />
+		<constructor-arg name="neutral" value="1" />
+	</bean>
+
+	<bean id="evilAlignment" class="evercraftJava8.Alignment">
+		<constructor-arg name="good" value="0" />
+		<constructor-arg name="evil" value="1000" />
+		<constructor-arg name="neutral" value="1" />
+	</bean>
+
 	<bean id="abilities" class="evercraftJava8.Abilities">
-		<constructor-arg ref="intelligence"/>
-		<constructor-arg ref="charisma"/>
+		<constructor-arg ref="intelligence" />
+		<constructor-arg ref="charisma" />
 	</bean>
-	
-	<bean id="plateArmor" class="evercraftJava8.PlateArmor"/>
-	<bean id="rollingDice" class="evercraftJava8.RollingDice"/>
-	<bean id="startingHealth" class="evercraftJava8.Health"/>
-	
+
+	<bean id="plateArmor" class="evercraftJava8.PlateArmor" />
+	<bean id="rollingDice" class="evercraftJava8.RollingDice" />
+	<bean id="startingHealth" class="evercraftJava8.Health" />
+
 	<bean id="intelligence" class="evercraftJava8.Intelligence">
 		<property name="level" value="20" />
 		<property name="abilityName" value="intelligence" />
 	</bean>
-	
+
 	<bean id="charisma" class="evercraftJava8.Charisma">
 		<property name="level" value="5" />
 		<property name="abilityName" value="charisma" />

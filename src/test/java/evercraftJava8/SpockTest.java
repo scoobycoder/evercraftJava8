@@ -37,7 +37,6 @@ public class SpockTest{
 	@InjectMocks
 	private Spock underTest;
 
-
 	@Before
 	public void setup() {
 		applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
@@ -67,24 +66,14 @@ public class SpockTest{
 	
 	@Test
 	public void whenSpockIsInMirrorUniverseHeWillAttackCharacterWithNoArmor() {
+		underTest = (Spock) applicationContext.getBean("evilSpock");
 		when(mockedDice.roll()).thenReturn(10);
 		when(mockedOpponent.getArmor()).thenReturn(mockedArmor);
 		when(mockedArmor.getArmor()).thenReturn(0);
-		underTest.setEvil(1000);
-		underTest.setGood(0);
 		
 		underTest.attack(mockedDice, mockedOpponent);
 		
 		assertEquals(true, underTest.attack(mockedDice, mockedOpponent));
-	}
-	
-	@Test
-	public void sometimesSpockGoesToMirrorUniverseAndIsEvilOnly() {
-		underTest.setGood(0);
-		underTest.setEvil(1000);
-		underTest.setNeutral(1);
-		
-		assertEquals(1, underTest.getNeutral());
 	}
 	
 	@Test
