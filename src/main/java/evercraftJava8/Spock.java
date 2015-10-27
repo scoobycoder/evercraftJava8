@@ -27,8 +27,11 @@ public class Spock extends CraftCharacter implements Alignment {
 	}
 
 	@Override
-	public int getGood() {
-		return good;
+	public boolean attack(RollingDice dice, CraftCharacter opponent) {
+		if (opponent.getArmor().getArmor() <= 0 && good > evil)
+			return false;
+		
+		return dice.roll() > opponent.getArmor().getArmor();
 	}
 
 	@Override
