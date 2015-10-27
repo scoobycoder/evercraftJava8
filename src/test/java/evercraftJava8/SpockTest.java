@@ -65,6 +65,18 @@ public class SpockTest{
 		assertEquals(false, underTest.attack(mockedDice, mockedOpponent));
 	}
 	
+	@Test
+	public void whenSpockIsInMirrorUniverseHeWillAttackCharacterWithNoArmor() {
+		when(mockedDice.roll()).thenReturn(10);
+		when(mockedOpponent.getArmor()).thenReturn(mockedArmor);
+		when(mockedArmor.getArmor()).thenReturn(0);
+		underTest.setEvil(1000);
+		underTest.setGood(0);
+		
+		underTest.attack(mockedDice, mockedOpponent);
+		
+		assertEquals(true, underTest.attack(mockedDice, mockedOpponent));
+	}
 	
 	@Test
 	public void sometimesSpockGoesToMirrorUniverseAndIsEvilOnly() {
@@ -72,7 +84,6 @@ public class SpockTest{
 		underTest.setEvil(1000);
 		underTest.setNeutral(1);
 		
-		assertEquals(1000, underTest.getEvil());
 		assertEquals(1, underTest.getNeutral());
 	}
 	
