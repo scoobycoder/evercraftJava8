@@ -1,8 +1,6 @@
 package evercraftJava8;
 
 public interface Alignment {
-	public int getGood();
-	public int getEvil();
 	public int getNeutral();
 	public void setGood(int newGood);
 	public void setEvil(int newEvil);

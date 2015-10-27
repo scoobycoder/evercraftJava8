@@ -1,5 +1,7 @@
 package evercraftJava8;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -27,10 +29,13 @@ public class SpockTest{
 	private CraftCharacter mockedOpponent;
 	@Mock
 	private Armor mockedArmor;
+	@Mock
+	private Puzzle mockedPuzzle;
+	@Mock
+	private Joke mockedJoke;
 
 	@InjectMocks
 	private Spock underTest;
-
 
 
 	@Before
@@ -50,9 +55,27 @@ public class SpockTest{
 	}
 	
 	@Test
-	public void spockIsOnlyGood() {
-		assertEquals(1000, underTest.getGood());
-		assertEquals(0, underTest.getEvil());
+	public void spockWillNotAttackCharacterWithNoArmorIfHeIsGood() {
+		when(mockedDice.roll()).thenReturn(10);
+		when(mockedOpponent.getArmor()).thenReturn(mockedArmor);
+		when(mockedArmor.getArmor()).thenReturn(0);
+		
+		underTest.attack(mockedDice, mockedOpponent);
+		
+		assertEquals(false, underTest.attack(mockedDice, mockedOpponent));
+	}
+	
+	@Test
+	public void whenSpockIsInMirrorUniverseHeWillAttackCharacterWithNoArmor() {
+		when(mockedDice.roll()).thenReturn(10);
+		when(mockedOpponent.getArmor()).thenReturn(mockedArmor);
+		when(mockedArmor.getArmor()).thenReturn(0);
+		underTest.setEvil(1000);
+		underTest.setGood(0);
+		
+		underTest.attack(mockedDice, mockedOpponent);
+		
+		assertEquals(true, underTest.attack(mockedDice, mockedOpponent));
 	}
 	
 	@Test
@@ -61,8 +84,6 @@ public class SpockTest{
 		underTest.setEvil(1000);
 		underTest.setNeutral(1);
 		
-		assertEquals(0, underTest.getGood());
-		assertEquals(1000, underTest.getEvil());
 		assertEquals(1, underTest.getNeutral());
 	}
 	
@@ -74,6 +95,7 @@ public class SpockTest{
 	
 	@Test
 	public void spockCanRollToAttack() {
+		when(mockedArmor.getArmor()).thenReturn(20);
 		when(mockedOpponent.getArmor()).thenReturn(mockedArmor);
 		
 		underTest.attack(mockedDice, mockedOpponent);
@@ -132,6 +154,20 @@ public class SpockTest{
 		attackedTimes(mockedDice, 5);
 		
 		assertEquals(DEAD, underTest.getHealth());
+	}
+	
+	@Test
+	public void spockCanCompleteDifficultPuzzles() {
+		when(mockedPuzzle.difficulty()).thenReturn(19);
+		
+		assertThat(underTest.completePuzzle(mockedPuzzle), is("Success"));
+	}
+	
+	@Test
+	public void spockCannotTellAJoke() {
+		when(mockedJoke.difficulty()).thenReturn(5);
+		
+		assertThat(underTest.jokeCreatesLaughs(mockedJoke), is("Failure"));
 	}
 
 	private void attackedTimes(RollingDice dice, int times) {
