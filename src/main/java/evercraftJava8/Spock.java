@@ -1,19 +1,18 @@
 package evercraftJava8;
 
-public class Spock extends CraftCharacter implements Alignment {
+public class Spock extends CraftCharacter {
 	private String name = "Spock";
-	private int evil = 0;
-	private int good = 1000;
-	private int neutral = 0;
 	private Armor armor;
 	private Health health;
 	private Abilities abilities;
+	private Alignment alignment;
 
-	public Spock(Armor armor, Health startingHealth, Abilities abilities) {
+	public Spock(Armor armor, Health startingHealth, Abilities abilities, Alignment alignment) {
 		super(armor, startingHealth);
 		this.armor = armor;
 		this.health = startingHealth;
 		this.abilities = abilities;
+		this.alignment = alignment;
 	}
 
 	@Override
@@ -23,30 +22,10 @@ public class Spock extends CraftCharacter implements Alignment {
 
 	@Override
 	public boolean attack(RollingDice dice, CraftCharacter opponent) {
-		if (opponent.getArmor().getArmor() <= 0 && good > evil)
+		if (opponent.getArmor().getArmor() <= 0 && alignment.getGood() > alignment.getEvil())
 			return false;
 		
 		return dice.roll() > opponent.getArmor().getArmor();
-	}
-
-	@Override
-	public int getNeutral() {
-		return neutral;
-	}
-
-	@Override
-	public void setGood(int newGood) {
-		good = newGood;
-	}
-
-	@Override
-	public void setEvil(int newEvil) {
-		evil = newEvil;
-	}
-
-	@Override
-	public void setNeutral(int newNeutral) {
-		neutral = newNeutral;
 	}
 
 	public int getArmorLevel() {
