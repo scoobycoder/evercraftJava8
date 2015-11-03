@@ -2,6 +2,8 @@ package evercraftJava8;
 
 import static org.junit.Assert.*;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -18,7 +20,7 @@ public class CharacterTest {
 	
 	@Test
 	public void characterShouldTellItsName() {
-		assertEquals("Name", underTest.getName());
+		assertThat(underTest.getName(), is("Name"));
 	}
 	
 	

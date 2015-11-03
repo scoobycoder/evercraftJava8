@@ -2,7 +2,6 @@ package evercraftJava8;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -50,7 +49,7 @@ public class SpockTest{
 	
 	@Test
 	public void spockKnowsHisName() {
-		assertEquals("Spock", underTest.getName());
+		assertThat(underTest.getName(), is("Spock"));
 	}
 	
 	@Test
@@ -61,7 +60,7 @@ public class SpockTest{
 		
 		underTest.attack(mockedDice, mockedOpponent);
 		
-		assertEquals(false, underTest.attack(mockedDice, mockedOpponent));
+		assertThat(underTest.attack(mockedDice, mockedOpponent), is(false));
 	}
 	
 	@Test
@@ -73,13 +72,13 @@ public class SpockTest{
 		
 		underTest.attack(mockedDice, mockedOpponent);
 		
-		assertEquals(true, underTest.attack(mockedDice, mockedOpponent));
+		assertThat(underTest.attack(mockedDice, mockedOpponent), is(true));
 	}
 	
 	@Test
 	public void spockHasArmorWhenHePlaysAGladiator() {
-		assertEquals(10, underTest.getArmorLevel());
-		assertEquals(5, underTest.getArmorHitPoints());
+		assertThat(underTest.getArmorLevel(), is(10));
+		assertThat(underTest.getArmorHitPoints(), is(5));
 	}
 	
 	@Test
@@ -100,7 +99,7 @@ public class SpockTest{
 	
 		underTest.attack(mockedDice, mockedOpponent);
 		
-		assertEquals(true, underTest.attack(mockedDice, mockedOpponent));
+		assertThat(underTest.attack(mockedDice, mockedOpponent), is(true));
 	}
 	
 	@Test
@@ -111,7 +110,7 @@ public class SpockTest{
 		
 		underTest.attack(mockedDice, mockedOpponent);
 		
-		assertEquals(false, underTest.attack(mockedDice, mockedOpponent));
+		assertThat(underTest.attack(mockedDice, mockedOpponent), is(false));
 	}
 	
 	@Test
@@ -119,7 +118,7 @@ public class SpockTest{
 		when(mockedDice.roll()).thenReturn(15);
 		when(mockedArmor.getArmor()).thenReturn(10);
 		
-		assertEquals(DAMAGE_OF_ONE, underTest.isAttacked(mockedDice));
+		assertThat(underTest.isAttacked(mockedDice), is(DAMAGE_OF_ONE));
 	}
 	
 	@Test
@@ -127,14 +126,14 @@ public class SpockTest{
 		when(mockedDice.roll()).thenReturn(5);
 		when(mockedArmor.getArmor()).thenReturn(10);
 		
-		assertEquals(NO_DAMAGE, underTest.isAttacked(mockedDice));
+		assertThat(underTest.isAttacked(mockedDice), is(NO_DAMAGE));
 	}
 	
 	@Test
 	public void spockTakesDoubleDamageFromRollOf20() {
 		when(mockedDice.roll()).thenReturn(20);
 		
-		assertEquals(DAMAGE_OF_TWO, underTest.isAttacked(mockedDice));
+		assertThat(underTest.isAttacked(mockedDice), is(DAMAGE_OF_TWO));
 	}
 	
 	@Test
@@ -142,7 +141,7 @@ public class SpockTest{
 		when(mockedDice.roll()).thenReturn(20);
 		attackedTimes(mockedDice, 5);
 		
-		assertEquals(DEAD, underTest.getHealth());
+		assertThat(underTest.getHealth(), is(DEAD));
 	}
 	
 	@Test

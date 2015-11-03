@@ -1,9 +1,9 @@
 package evercraftJava8;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class HealthTest {
 
@@ -16,19 +16,19 @@ public class HealthTest {
 	
 	@Test
 	public void shouldHaveStartingHealth() {
-		assertEquals(10, health.startingHealth());
+		assertThat(health.startingHealth(), is(10));
 	}
 	
 	@Test
 	public void shouldReturnHealthValue() {
-		assertEquals(10, health.getValue());
+		assertThat(health.getValue(), is(10));
 	}
 	
 	@Test
 	public void shouldAllHealthReduction() {
 		health.setValue(health.getValue() - 5);
 		
-		assertEquals(5, health.getValue());
+		assertThat(health.getValue(), is(5));
 	}
 	
 }
