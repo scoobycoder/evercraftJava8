@@ -58,4 +58,8 @@ public class Spock extends CraftCharacter {
 		return result;
 	}
 
+	public void apply(Loan loan) {
+		loan.submit(name);
+	}
+
 }

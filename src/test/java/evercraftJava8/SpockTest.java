@@ -32,6 +32,8 @@ public class SpockTest{
 	private Puzzle mockedPuzzle;
 	@Mock
 	private Joke mockedJoke;
+	@Mock
+	private Loan loan;
 
 	@InjectMocks
 	private Spock underTest;
@@ -48,8 +50,9 @@ public class SpockTest{
 	}
 	
 	@Test
-	public void spockKnowsHisName() {
-		assertThat(underTest.getName(), is("Spock"));
+	public void spockCanApplyForLoan() {
+		underTest.apply(loan);
+		verify(loan).submit("Spock");
 	}
 	
 	@Test
