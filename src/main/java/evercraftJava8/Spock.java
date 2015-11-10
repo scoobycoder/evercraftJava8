@@ -36,10 +36,6 @@ public class Spock extends CraftCharacter {
 		return armor.getArmorHitPoints();
 	}
 
-	public int getHealth() {
-		return health.getValue();
-	}
-
 	public String completePuzzle(Puzzle puzzle) {
 		String result = "Failure";
 		
@@ -60,6 +56,15 @@ public class Spock extends CraftCharacter {
 
 	public void apply(Loan loan) {
 		loan.submit(name);
+	}
+
+	public boolean willRun(CraftCharacter opponent) {
+		boolean willRun = false;
+		
+		if (opponent.getHealth() >= 20 && opponent.getArmor().getArmor() >= 20)
+			willRun = true;
+		
+		return willRun;
 	}
 
 }

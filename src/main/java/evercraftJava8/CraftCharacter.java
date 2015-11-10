@@ -22,6 +22,10 @@ public class CraftCharacter {
 		this.armor = armor;
 	}
 	
+	public int getHealth() {
+		return health.getValue();
+	}
+	
 	public boolean attack(RollingDice dice, CraftCharacter opponent) {
 		return dice.roll() > opponent.getArmor().getArmor();
 	}

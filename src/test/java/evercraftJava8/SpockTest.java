@@ -160,6 +160,15 @@ public class SpockTest{
 		
 		assertThat(underTest.jokeCreatesLaughs(mockedJoke), is("Failure"));
 	}
+	
+	@Test
+	public void spockIsWiseAndWillNotFightCharactersWithMaxHealthAndArmor() {
+		when(mockedOpponent.getHealth()).thenReturn(20);
+		when(mockedOpponent.getArmor()).thenReturn(mockedArmor);
+		when(mockedArmor.getArmor()).thenReturn(20);
+		
+		assertThat("Spock did not run when he should have ran.", underTest.willRun(mockedOpponent), is(true));
+	}
 
 	private void attackedTimes(RollingDice dice, int times) {
 		for (int i = 0; i < times; i++)
