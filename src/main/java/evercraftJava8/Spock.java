@@ -6,13 +6,15 @@ public class Spock extends CraftCharacter {
 	private Health health;
 	private Abilities abilities;
 	private Alignment alignment;
+	private KnittingFactory knittingFactory;
 
-	public Spock(Armor armor, Health startingHealth, Abilities abilities, Alignment alignment) {
+	public Spock(Armor armor, Health startingHealth, Abilities abilities, Alignment alignment, KnittingFactory knittingFactory) {
 		super(armor, startingHealth);
 		this.armor = armor;
 		this.health = startingHealth;
 		this.abilities = abilities;
 		this.alignment = alignment;
+		this.knittingFactory = knittingFactory;
 	}
 
 	@Override
@@ -65,6 +67,21 @@ public class Spock extends CraftCharacter {
 			willRun = true;
 		
 		return willRun;
+	}
+
+	public boolean isSick(Virus virus) {
+		boolean sick = false;
+		
+		if (virus.getName() == "vulcan virus")
+			sick = true;
+		
+		return sick;
+	}
+
+	public KnittedItem knit(Yarn yarn) {
+		KnittedItem knittedItem = knittingFactory.knit(yarn);
+		
+		return knittedItem;
 	}
 
 }

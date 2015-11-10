@@ -1,6 +1,7 @@
 package evercraftJava8;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.isA;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -34,6 +35,12 @@ public class SpockTest{
 	private Joke mockedJoke;
 	@Mock
 	private Loan loan;
+	@Mock
+	private Virus virus;
+	@Mock
+	private Yarn yarn;
+	@Mock
+	private WashCloth washCloth;
 
 	@InjectMocks
 	private Spock underTest;
@@ -168,6 +175,27 @@ public class SpockTest{
 		when(mockedArmor.getArmor()).thenReturn(20);
 		
 		assertThat("Spock did not run when he should have ran.", underTest.willRun(mockedOpponent), is(true));
+	}
+	
+	@Test
+	public void spockCannotCatchTheCold() {
+		when(virus.getName()).thenReturn("cold");
+		
+		assertThat("Spock caught the cold, but he shouldn't", underTest.isSick(virus), is(false));
+	}
+	
+	@Test
+	public void spockCanCatchTheVulcanVirus() {
+		when(virus.getName()).thenReturn("vulcan virus");
+		
+		assertThat("Spock did not catch the Vulcan Virus but he should.", underTest.isSick(virus), is(true));
+	}
+	
+	@Test
+	public void spockCanKnitAWashCloth() {
+		when(yarn.getAmount()).thenReturn(2);
+		
+		assertThat("Spock should be able to knit a wash cloth", underTest.knit(yarn), isA(KnittedItem.class));
 	}
 
 	private void attackedTimes(RollingDice dice, int times) {

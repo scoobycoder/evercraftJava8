@@ -12,11 +12,13 @@
 	<bean id="spock" class="evercraftJava8.Spock" parent="craftCharacter" >
 		<constructor-arg ref="abilities" />
 		<constructor-arg ref="alignment" />
+		<constructor-arg ref="knittingFactory" />
 	</bean>
 
 	<bean id="evilSpock" class="evercraftJava8.Spock" parent="craftCharacter" >
 		<constructor-arg ref="abilities" />
 		<constructor-arg ref="evilAlignment" />
+		<constructor-arg ref="knittingFactory" />
 	</bean>
 
 	<bean id="alignment" class="evercraftJava8.Alignment">
@@ -49,5 +51,7 @@
 		<property name="level" value="5" />
 		<property name="abilityName" value="charisma" />
 	</bean>
+	
+	<bean id="knittingFactory" class="evercraftJava8.KnittingFactory"/>
 
 </beans>
