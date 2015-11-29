@@ -45,27 +45,27 @@
 	<bean id="rollingDice" class="evercraftJava8.RollingDice" />
 	<bean id="startingHealth" class="evercraftJava8.Health" />
 
-	<bean id="intelligence" class="evercraftJava8.Intelligence">
+	<bean id="intelligence" class="evercraftJava8.ActualAbility">
 		<property name="level" value="20" />
 		<property name="abilityName" value="intelligence" />
 	</bean>
 
-	<bean id="charisma" class="evercraftJava8.Charisma">
+	<bean id="charisma" class="evercraftJava8.ActualAbility">
 		<property name="level" value="5" />
 		<property name="abilityName" value="charisma" />
 	</bean>
 	
-	<bean id="strength" class="evercraftJava8.Strength">
+	<bean id="strength" class="evercraftJava8.ActualAbility">
 		<property name="level" value="20" />
 		<property name="abilityName" value="strength" />
 	</bean>
 	
-	<bean id="dexterity" class="evercraftJava8.Dexterity">
+	<bean id="dexterity" class="evercraftJava8.ActualAbility">
 		<property name="level" value="5" />
 		<property name="abilityName" value="dexterity" />
 	</bean>
 	
-	<bean id="constitution" class="evercraftJava8.Constitution">
+	<bean id="constitution" class="evercraftJava8.ActualAbility">
 		<property name="level" value="18" />
 		<property name="abilityName" value="constitution" />
 	</bean>

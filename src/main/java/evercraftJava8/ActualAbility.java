@@ -1,6 +1,6 @@
 package evercraftJava8;
 
-public class Dexterity implements Ability {
+public class ActualAbility implements Ability {
 
 	private int level;
 	private String abilityName;
