@@ -41,6 +41,8 @@ public class SpockTest{
 	private Yarn yarn;
 	@Mock
 	private WashCloth washCloth;
+	@Mock
+	private Modifier mockModifier;
 
 	@InjectMocks
 	private Spock underTest;
@@ -106,10 +108,11 @@ public class SpockTest{
 		when(mockedDice.roll()).thenReturn(20);
 		when(mockedOpponent.getArmor()).thenReturn(mockedArmor);
 		when(mockedArmor.getArmor()).thenReturn(10);
+		when(mockModifier.modify(20)).thenReturn(20);
 	
 		underTest.attack(mockedDice, mockedOpponent);
 		
-		assertThat(underTest.attack(mockedDice, mockedOpponent), is(true));
+		assertThat("Spock should hit the player because he rolled a 20, but he didn't", underTest.attack(mockedDice, mockedOpponent), is(true));
 	}
 	
 	@Test
@@ -196,6 +199,18 @@ public class SpockTest{
 		when(yarn.getAmount()).thenReturn(2);
 		
 		assertThat("Spock should be able to knit a wash cloth", underTest.knit(yarn), isA(KnittedItem.class));
+	}
+	
+	@Test
+	public void spockCallsModifierToScoreWhenHeRollsToAttack() {
+		int currentStrength = 20;
+		when(mockedDice.roll()).thenReturn(20);
+		when(mockedArmor.getArmor()).thenReturn(20);
+		when(mockedOpponent.getArmor()).thenReturn(mockedArmor);
+		
+		underTest.attack(mockedDice, mockedOpponent);
+	
+		verify(mockModifier).modify(currentStrength);
 	}
 
 	private void attackedTimes(RollingDice dice, int times) {

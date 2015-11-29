@@ -7,6 +7,7 @@
 	<bean id="craftCharacter" class="evercraftJava8.CraftCharacter">
 		<constructor-arg ref="plateArmor" />
 		<constructor-arg ref="startingHealth" />
+		<constructor-arg ref="modifier" />
 	</bean>
 
 	<bean id="spock" class="evercraftJava8.Spock" parent="craftCharacter" >
@@ -26,6 +27,8 @@
 		<constructor-arg name="evil" value="0" />
 		<constructor-arg name="neutral" value="1" />
 	</bean>
+	
+	<bean id="modifier" class="evercraftJava8.Modifier"/>
 
 	<bean id="evilAlignment" class="evercraftJava8.Alignment">
 		<constructor-arg name="good" value="0" />

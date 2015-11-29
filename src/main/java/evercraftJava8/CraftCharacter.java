@@ -5,7 +5,7 @@ public class CraftCharacter {
 	private Armor armor;
 	private Health health;
 
-	public CraftCharacter(Armor armor, Health startingHealth) {
+	public CraftCharacter(Armor armor, Health startingHealth, Modifier modifier) {
 		this.setArmor(armor);
 		this.health = startingHealth;
 	}

@@ -7,14 +7,16 @@ public class Spock extends CraftCharacter {
 	private Abilities abilities;
 	private Alignment alignment;
 	private KnittingFactory knittingFactory;
+	private Modifier modifier;
 
-	public Spock(Armor armor, Health startingHealth, Abilities abilities, Alignment alignment, KnittingFactory knittingFactory) {
-		super(armor, startingHealth);
+	public Spock(Armor armor, Health startingHealth, Abilities abilities, Alignment alignment, KnittingFactory knittingFactory, Modifier modifier) {
+		super(armor, startingHealth, modifier);
 		this.armor = armor;
 		this.health = startingHealth;
 		this.abilities = abilities;
 		this.alignment = alignment;
 		this.knittingFactory = knittingFactory;
+		this.modifier = modifier;
 	}
 
 	@Override
@@ -27,7 +29,11 @@ public class Spock extends CraftCharacter {
 		if (opponent.getArmor().getArmor() <= 0 && alignment.getGood() > alignment.getEvil())
 			return false;
 		
-		return dice.roll() > opponent.getArmor().getArmor();
+		return modifyRoll(dice.roll()) > opponent.getArmor().getArmor();
+	}
+
+	private int modifyRoll(int roll) {
+		return modifier.modify(roll);
 	}
 
 	public int getArmorLevel() {
