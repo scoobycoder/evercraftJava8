@@ -37,6 +37,8 @@
 		<constructor-arg ref="intelligence" />
 		<constructor-arg ref="charisma" />
 		<constructor-arg ref="strength" />
+		<constructor-arg ref="dexterity" />
+		<constructor-arg ref="constitution" />
 	</bean>
 
 	<bean id="plateArmor" class="evercraftJava8.PlateArmor" />
@@ -56,6 +58,16 @@
 	<bean id="strength" class="evercraftJava8.Strength">
 		<property name="level" value="20" />
 		<property name="abilityName" value="strength" />
+	</bean>
+	
+	<bean id="dexterity" class="evercraftJava8.Dexterity">
+		<property name="level" value="5" />
+		<property name="abilityName" value="dexterity" />
+	</bean>
+	
+	<bean id="constitution" class="evercraftJava8.Constitution">
+		<property name="level" value="18" />
+		<property name="abilityName" value="constitution" />
 	</bean>
 	
 	<bean id="knittingFactory" class="evercraftJava8.KnittingFactory"/>

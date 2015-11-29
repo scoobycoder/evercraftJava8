@@ -26,6 +26,8 @@ public class AbilitiesTest {
 		assertThat(underTest.getCharisma(), is(5));
 		assertThat(underTest.getIntelligence(), is(20));
 		assertThat(underTest.getStrength(), is(20));
+		assertThat(underTest.getDexterity(), is(5));
+		assertThat(underTest.getConstitution(), is(18));
 	}
 	
 }
