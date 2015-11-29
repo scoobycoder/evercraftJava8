@@ -25,6 +25,7 @@ public class AbilitiesTest {
 	public void abilitiesShouldIncludeAllAbilities() {
 		assertThat(underTest.getCharisma(), is(5));
 		assertThat(underTest.getIntelligence(), is(20));
+		assertThat(underTest.getStrength(), is(20));
 	}
 	
 }

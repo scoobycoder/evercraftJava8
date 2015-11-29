@@ -36,6 +36,7 @@
 	<bean id="abilities" class="evercraftJava8.Abilities">
 		<constructor-arg ref="intelligence" />
 		<constructor-arg ref="charisma" />
+		<constructor-arg ref="strength" />
 	</bean>
 
 	<bean id="plateArmor" class="evercraftJava8.PlateArmor" />
@@ -50,6 +51,11 @@
 	<bean id="charisma" class="evercraftJava8.Charisma">
 		<property name="level" value="5" />
 		<property name="abilityName" value="charisma" />
+	</bean>
+	
+	<bean id="strength" class="evercraftJava8.Strength">
+		<property name="level" value="20" />
+		<property name="abilityName" value="strength" />
 	</bean>
 	
 	<bean id="knittingFactory" class="evercraftJava8.KnittingFactory"/>

@@ -2,28 +2,27 @@ package evercraftJava8;
 
 public class Strength implements Ability {
 
+	private int level;
+	private String abilityName;
+
 	@Override
 	public int getLevel() {
-		// TODO Auto-generated method stub
-		return 0;
+		return level;
 	}
 
 	@Override
 	public void setLevel(int level) {
-		// TODO Auto-generated method stub
-		
+		this.level = level;
 	}
 
 	@Override
 	public String getAbilityName() {
-		// TODO Auto-generated method stub
-		return null;
+		return abilityName;
 	}
 
 	@Override
 	public void setAbilityName(String abilityName) {
-		// TODO Auto-generated method stub
-		
+		this.abilityName = abilityName;
 	}
 
 }
