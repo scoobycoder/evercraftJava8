@@ -4,10 +4,12 @@ public class CraftCharacter {
 	private String name = "Name";
 	private Armor armor;
 	private Health health;
+	private Modifier modifier;
 
 	public CraftCharacter(Armor armor, Health startingHealth, Modifier modifier) {
 		this.setArmor(armor);
 		this.health = startingHealth;
+		this.modifier = modifier;
 	}
 	
 	public String getName() {
@@ -31,6 +33,11 @@ public class CraftCharacter {
 	}
 	
 	public int isAttacked(RollingDice dice) {
+		
+		int bonusArmor = 0;
+		
+		bonusArmor = modifier.modify(armor.getArmor());
+		
 		if (hasBonusDamage(dice)){
 			this.health.setValue(health.getValue() - 2);
 			return 2;

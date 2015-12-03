@@ -64,7 +64,7 @@
 	</bean>
 	
 	<bean id="dexterity" class="evercraftJava8.ActualAbility">
-		<property name="level" value="5" />
+		<property name="level" value="15" />
 		<property name="abilityName" value="dexterity" />
 	</bean>
 	

@@ -212,6 +212,27 @@ public class SpockTest{
 	
 		verify(mockModifier).modify(currentStrength);
 	}
+	
+	@Test
+	public void spockCallsModifierToUpdateArmorWhenHeIsAttacked() {
+		int currentArmorLevel = 10;
+		when(mockedArmor.getArmor()).thenReturn(10);
+		when(mockedDice.roll()).thenReturn(20);
+		attackedTimes(mockedDice, 1);
+		
+		verify(mockModifier).modify(currentArmorLevel);
+	}
+	
+	@Test
+	public void spockWillNotDieWhenHit4TimesWhenHisDexterityModifierIsInPlace() {
+		when(mockedDice.roll()).thenReturn(20);
+		when(mockedArmor.getArmor()).thenReturn(10);
+		when(mockedDice.roll()).thenReturn(20);
+		when(mockModifier.modify(10)).thenReturn(20);
+		attackedTimes(mockedDice, 5);
+		
+		assertThat(underTest.getHealth(), is(2));
+	}
 
 	private void attackedTimes(RollingDice dice, int times) {
 		for (int i = 0; i < times; i++)
