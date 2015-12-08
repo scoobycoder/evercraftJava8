@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
@@ -19,9 +20,6 @@ public class SpockTest{
 
 	private static final int INITIAL_HEALTH = 10;
 	private static final int DEAD = 0;
-	private static final int DAMAGE_OF_TWO = 2;
-	private static final int NO_DAMAGE = 0;
-	private static final int DAMAGE_OF_ONE = 1;
 
 	private ClassPathXmlApplicationContext applicationContext;
 	
@@ -29,6 +27,8 @@ public class SpockTest{
 	private RollingDice mockedDice;
 	@Mock
 	private CraftCharacter mockedOpponent;
+	@Spy
+	private CraftCharacter spiedOpponent;
 	@Mock
 	private Armor mockedArmor;
 	@Mock
@@ -52,6 +52,7 @@ public class SpockTest{
 	@Before
 	public void setup() {
 		applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
+		spiedOpponent = (CraftCharacter) applicationContext.getBean("craftCharacter");
 		underTest = (Spock) applicationContext.getBean("spock");
 	}
 	
@@ -253,6 +254,21 @@ public class SpockTest{
 		attackedTimes(mockedDice, 1);
 		
 		assertThat(underTest.getHealth(), is(10));
+	}
+	
+	@Test
+	public void spockWillApplyStrengthModifierWhenHeAttacksOpponent() {
+		//PROBLEM spiedOpponent is under test and not underTest this is why I get no result
+		// Fix this for next time
+		
+		when(mockedDice.roll()).thenReturn(10);
+		when(mockedArmor.getArmor()).thenReturn(5);
+		when(spiedOpponent.getArmor()).thenReturn(mockedArmor);
+		when(mockModifier.modify(10)).thenReturn(10);
+		
+		underTest.attack(mockedDice, spiedOpponent);
+		
+		assertThat(spiedOpponent.getHealth(), is(5));
 	}
 
 	private void attackedTimes(RollingDice dice, int times) {
