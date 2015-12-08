@@ -47,11 +47,7 @@ public class CraftCharacter {
 
 	private void handleBonusDamage(RollingDice dice) {
 		if (hasBonusDamage(dice))
-			applyBonusDamage(dice);
-	}
-
-	private void applyBonusDamage(RollingDice dice) {
-		handleRegularDamage();
+			handleRegularDamage();
 	}
 
 	private boolean rollGreaterThanArmor(RollingDice dice) {
