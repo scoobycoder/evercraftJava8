@@ -17,6 +17,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpockTest{
 
+	private static final int INITIAL_HEALTH = 10;
 	private static final int DEAD = 0;
 	private static final int DAMAGE_OF_TWO = 2;
 	private static final int NO_DAMAGE = 0;
@@ -129,10 +130,13 @@ public class SpockTest{
 	
 	@Test
 	public void spockTakesHitAndSuffersDamage() {
+		int initialHealthReducedByOne = 9;
 		when(mockedDice.roll()).thenReturn(15);
 		when(mockedArmor.getArmor()).thenReturn(10);
 		
-		assertThat(underTest.isAttacked(mockedDice), is(DAMAGE_OF_ONE));
+		underTest.isAttacked(mockedDice);
+		
+		assertThat(underTest.getHealth(), is(initialHealthReducedByOne));
 	}
 	
 	@Test
@@ -140,14 +144,19 @@ public class SpockTest{
 		when(mockedDice.roll()).thenReturn(5);
 		when(mockedArmor.getArmor()).thenReturn(10);
 		
-		assertThat(underTest.isAttacked(mockedDice), is(NO_DAMAGE));
+		underTest.isAttacked(mockedDice);
+		
+		assertThat(underTest.getHealth(), is(INITIAL_HEALTH));
 	}
 	
 	@Test
 	public void spockTakesDoubleDamageFromRollOf20() {
+		int initialHealthReducedByTwo = 8;
 		when(mockedDice.roll()).thenReturn(20);
 		
-		assertThat(underTest.isAttacked(mockedDice), is(DAMAGE_OF_TWO));
+		underTest.isAttacked(mockedDice);
+		
+		assertThat(underTest.getHealth(), is(initialHealthReducedByTwo));
 	}
 	
 	@Test
@@ -229,7 +238,7 @@ public class SpockTest{
 	public void spockCallsModifierToUpdateArmorWhenHeIsAttacked() {
 		int currentArmorLevel = 10;
 		when(mockedArmor.getArmor()).thenReturn(10);
-		when(mockedDice.roll()).thenReturn(20);
+		when(mockedDice.roll()).thenReturn(10);
 		attackedTimes(mockedDice, 1);
 		
 		verify(mockModifier).modify(currentArmorLevel);

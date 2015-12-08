@@ -32,28 +32,33 @@ public class CraftCharacter {
 		return dice.roll() > opponent.getArmor().getArmor();
 	}
 
-	public int isAttacked(RollingDice dice) {
-
-		if (hasBonusDamage(dice)) {
-			if (rollGreaterThanArmor(dice)) {
-				this.health.setValue(health.getValue() - 2);
-			}
-			return 2;
-		}
+	public void isAttacked(RollingDice dice) {
 
 		if (rollGreaterThanArmor(dice)) {
-			this.health.setValue(health.getValue() - 1);
-			return 1;
+			handleRegularDamage();
+			handleBonusDamage(dice);
 		}
 
-		return 0;
+	}
+
+	private void handleRegularDamage() {
+		this.health.setValue(health.getValue() - 1);
+	}
+
+	private void handleBonusDamage(RollingDice dice) {
+		if (hasBonusDamage(dice))
+			applyBonusDamage(dice);
+	}
+
+	private void applyBonusDamage(RollingDice dice) {
+		handleRegularDamage();
 	}
 
 	private boolean rollGreaterThanArmor(RollingDice dice) {
 		int bonusArmor = 0;
 
 		bonusArmor = modifier.modify(armor.getArmor());
-		
+
 		return dice.roll() > (armor.getArmor() + bonusArmor);
 	}
 
