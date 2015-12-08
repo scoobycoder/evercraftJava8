@@ -11,7 +11,7 @@ public class CraftCharacter {
 		this.health = startingHealth;
 		this.modifier = modifier;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -23,40 +23,42 @@ public class CraftCharacter {
 	public void setArmor(Armor armor) {
 		this.armor = armor;
 	}
-	
+
 	public int getHealth() {
 		return health.getValue();
 	}
-	
+
 	public boolean attack(RollingDice dice, CraftCharacter opponent) {
 		return dice.roll() > opponent.getArmor().getArmor();
 	}
-	
+
 	public int isAttacked(RollingDice dice) {
-		
-		int bonusArmor = 0;
-		
-		bonusArmor = modifier.modify(armor.getArmor());
-		
-		if (hasBonusDamage(dice)){
-			this.health.setValue(health.getValue() - 2);
+
+		if (hasBonusDamage(dice)) {
+			if (rollGreaterThanArmor(dice)) {
+				this.health.setValue(health.getValue() - 2);
+			}
 			return 2;
 		}
-		
+
 		if (rollGreaterThanArmor(dice)) {
 			this.health.setValue(health.getValue() - 1);
 			return 1;
 		}
-		
+
 		return 0;
 	}
 
 	private boolean rollGreaterThanArmor(RollingDice dice) {
-		return dice.roll() > armor.getArmor();
+		int bonusArmor = 0;
+
+		bonusArmor = modifier.modify(armor.getArmor());
+		
+		return dice.roll() > (armor.getArmor() + bonusArmor);
 	}
 
 	private boolean hasBonusDamage(RollingDice dice) {
 		return dice.roll() == 20;
 	}
-	
+
 }

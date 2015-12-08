@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.isA;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -150,6 +151,17 @@ public class SpockTest{
 	}
 	
 	@Test
+	public void spockTakesNoDamageFromRollOf20WhichWouldHaveBeenDoubleIfArmorStrongEnough() {
+		int initial_health = 10;
+		when(mockedDice.roll()).thenReturn(20);
+		when(mockedArmor.getArmor()).thenReturn(20);
+		
+		underTest.isAttacked(mockedDice);
+		
+		assertThat(underTest.getHealth(), is(initial_health));
+	}
+	
+	@Test
 	public void whenSpockRunsOutOfHealthHeDies() {
 		when(mockedDice.roll()).thenReturn(20);
 		attackedTimes(mockedDice, 5);
@@ -224,14 +236,14 @@ public class SpockTest{
 	}
 	
 	@Test
-	public void spockWillNotDieWhenHit4TimesWhenHisDexterityModifierIsInPlace() {
+	public void spockWillNotDieWillNotTakeHitsWhenHisDexterityModifierIsInPlace() {
 		when(mockedDice.roll()).thenReturn(20);
 		when(mockedArmor.getArmor()).thenReturn(10);
 		when(mockedDice.roll()).thenReturn(20);
 		when(mockModifier.modify(10)).thenReturn(20);
-		attackedTimes(mockedDice, 5);
+		attackedTimes(mockedDice, 1);
 		
-		assertThat(underTest.getHealth(), is(2));
+		assertThat(underTest.getHealth(), is(10));
 	}
 
 	private void attackedTimes(RollingDice dice, int times) {
