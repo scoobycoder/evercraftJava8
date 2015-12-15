@@ -25,11 +25,14 @@ public class Spock extends CraftCharacter {
 	}
 
 	@Override
-	public boolean attack(RollingDice dice, CraftCharacter opponent) {
-		if (opponent.getArmor().getArmor() <= 0 && alignment.getGood() > alignment.getEvil())
-			return false;
+	public void attack(RollingDice dice, CraftCharacter opponent) {
+		if (opponent.getArmor().getArmor() <= 0 && alignment.getGood() > alignment.getEvil()) {
+			
+		}
 		
-		return modifyRoll(dice.roll()) > opponent.getArmor().getArmor();
+		if (modifyRoll(dice.roll()) > opponent.getArmor().getArmor()) {
+			opponent.isAttacked(dice);
+		}
 	}
 
 	private int modifyRoll(int roll) {
