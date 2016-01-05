@@ -1,5 +1,7 @@
 package evercraftJava8;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Abilities {
 
 	private Ability intelligence;
@@ -8,6 +10,7 @@ public class Abilities {
 	private Ability dexterity;
 	private Ability constitution;
 
+	@Autowired
 	public Abilities(Ability intelligence, Ability charisma, Ability strength, Ability dexterity, Ability constitution) {
 		this.intelligence = intelligence;
 		this.charisma = charisma;

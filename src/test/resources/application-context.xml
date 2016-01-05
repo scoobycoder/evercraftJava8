@@ -10,7 +10,6 @@
 
 	<bean id="craftCharacter" class="evercraftJava8.CraftCharacter"/>
 	<bean id="spock" class="evercraftJava8.Spock" parent="craftCharacter"/>
-
 	<bean id="evilSpock" class="evercraftJava8.Spock" parent="craftCharacter" />
 
 	<bean id="alignment" class="evercraftJava8.Alignment">
@@ -27,13 +26,7 @@
 		<constructor-arg name="neutral" value="1" />
 	</bean>
 
-	<bean id="abilities" class="evercraftJava8.Abilities">
-		<constructor-arg ref="intelligence" />
-		<constructor-arg ref="charisma" />
-		<constructor-arg ref="strength" />
-		<constructor-arg ref="dexterity" />
-		<constructor-arg ref="constitution" />
-	</bean>
+	<bean id="abilities" class="evercraftJava8.Abilities"/>
 
 	<bean id="plateArmor" class="evercraftJava8.PlateArmor" />
 	<bean id="rollingDice" class="evercraftJava8.RollingDice" />
