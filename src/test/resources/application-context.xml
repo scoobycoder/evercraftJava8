@@ -9,14 +9,9 @@
 	<context:annotation-config/>
 
 	<bean id="craftCharacter" class="evercraftJava8.CraftCharacter"/>
-
 	<bean id="spock" class="evercraftJava8.Spock" parent="craftCharacter"/>
 
-	<bean id="evilSpock" class="evercraftJava8.Spock" parent="craftCharacter" >
-		<constructor-arg ref="abilities" />
-		<constructor-arg ref="evilAlignment" />
-		<constructor-arg ref="knittingFactory" />
-	</bean>
+	<bean id="evilSpock" class="evercraftJava8.Spock" parent="craftCharacter" />
 
 	<bean id="alignment" class="evercraftJava8.Alignment">
 		<constructor-arg name="good" value="1000" />
