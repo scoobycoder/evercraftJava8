@@ -1,11 +1,14 @@
 package evercraftJava8;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class CraftCharacter {
 	private String name = "Name";
 	private Armor armor;
 	private Health health;
 	private Modifier modifier;
 
+	@Autowired
 	public CraftCharacter(Armor armor, Health startingHealth, Modifier modifier) {
 		this.setArmor(armor);
 		this.health = startingHealth;
