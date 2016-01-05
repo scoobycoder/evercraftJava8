@@ -1,36 +1,33 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:annotation-config/>
+	<context:annotation-config />
 
-	<bean id="craftCharacter" class="evercraftJava8.CraftCharacter"/>
-	<bean id="spock" class="evercraftJava8.Spock" parent="craftCharacter"/>
+	<bean id="craftCharacter" class="evercraftJava8.CraftCharacter" />
+	<bean id="spock" class="evercraftJava8.Spock" parent="craftCharacter" />
 	<bean id="evilSpock" class="evercraftJava8.Spock" parent="craftCharacter" />
+	<bean id="abilities" class="evercraftJava8.Abilities" />
+	<bean id="plateArmor" class="evercraftJava8.PlateArmor" />
+	<bean id="rollingDice" class="evercraftJava8.RollingDice" />
+	<bean id="startingHealth" class="evercraftJava8.Health" />
+	<bean id="knittingFactory" class="evercraftJava8.KnittingFactory" />
+	<bean id="modifier" class="evercraftJava8.Modifier" />
 
 	<bean id="alignment" class="evercraftJava8.Alignment">
 		<constructor-arg name="good" value="1000" />
 		<constructor-arg name="evil" value="0" />
 		<constructor-arg name="neutral" value="1" />
 	</bean>
-	
-	<bean id="modifier" class="evercraftJava8.Modifier"/>
 
 	<bean id="evilAlignment" class="evercraftJava8.Alignment">
 		<constructor-arg name="good" value="0" />
 		<constructor-arg name="evil" value="1000" />
 		<constructor-arg name="neutral" value="1" />
 	</bean>
-
-	<bean id="abilities" class="evercraftJava8.Abilities"/>
-
-	<bean id="plateArmor" class="evercraftJava8.PlateArmor" />
-	<bean id="rollingDice" class="evercraftJava8.RollingDice" />
-	<bean id="startingHealth" class="evercraftJava8.Health" />
 
 	<bean id="intelligence" class="evercraftJava8.ActualAbility">
 		<property name="level" value="20" />
@@ -41,22 +38,20 @@
 		<property name="level" value="5" />
 		<property name="abilityName" value="charisma" />
 	</bean>
-	
+
 	<bean id="strength" class="evercraftJava8.ActualAbility">
 		<property name="level" value="20" />
 		<property name="abilityName" value="strength" />
 	</bean>
-	
+
 	<bean id="dexterity" class="evercraftJava8.ActualAbility">
 		<property name="level" value="15" />
 		<property name="abilityName" value="dexterity" />
 	</bean>
-	
+
 	<bean id="constitution" class="evercraftJava8.ActualAbility">
 		<property name="level" value="18" />
 		<property name="abilityName" value="constitution" />
 	</bean>
-	
-	<bean id="knittingFactory" class="evercraftJava8.KnittingFactory"/>
 
 </beans>
