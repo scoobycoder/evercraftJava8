@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
@@ -22,7 +23,7 @@ public class SpockTest{
 	private static final int INITIAL_HEALTH = 10;
 	private static final int DEAD = 0;
 
-	private ClassPathXmlApplicationContext applicationContext;
+	private AnnotationConfigApplicationContext applicationContext;
 	
 	@Mock
 	private RollingDice mockedDice;
@@ -52,7 +53,7 @@ public class SpockTest{
 
 	@Before
 	public void setup() {
-		applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
+		applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 		spiedOpponent = (CraftCharacter) applicationContext.getBean("craftCharacter");
 		underTest = (Spock) applicationContext.getBean("spock");
 		MockitoAnnotations.initMocks(this);

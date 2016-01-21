@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class OpponentTest {
@@ -23,12 +24,12 @@ public class OpponentTest {
 	@Spy
 	private Spock spock;
 	
-	private ClassPathXmlApplicationContext applicationContext;
+	private AnnotationConfigApplicationContext applicationContext;
 	private CraftCharacter underTest;
 	
 	@Before
 	public void setup() {
-		applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
+		applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 		underTest = (CraftCharacter) applicationContext.getBean("craftCharacter");
 		spock = (Spock) applicationContext.getBean("spock");
 		MockitoAnnotations.initMocks(this);
