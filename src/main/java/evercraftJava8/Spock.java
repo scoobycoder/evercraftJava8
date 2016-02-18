@@ -32,9 +32,11 @@ public class Spock extends CraftCharacter {
 		if (opponent.getArmor().getArmor() <= 0 && alignment.getGood() > alignment.getEvil()) {
 			
 		}
+	
+		int modifiedDice = modifyRoll(dice.roll());
 		
-		if (modifyRoll(dice.roll()) > opponent.getArmor().getArmor()) {
-			opponent.isAttacked(dice);
+		if (modifiedDice > opponent.getArmor().getArmor()) {
+			opponent.isAttacked(modifiedDice);
 		}
 	}
 

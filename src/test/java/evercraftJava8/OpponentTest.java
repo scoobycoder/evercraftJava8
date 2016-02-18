@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
@@ -21,7 +22,7 @@ public class OpponentTest {
 	private Armor mockedArmor;
 	@Mock
 	private Modifier mockModifier;
-	@Spy
+	@Spy @InjectMocks
 	private Spock spock;
 	
 	private AnnotationConfigApplicationContext applicationContext;
@@ -33,14 +34,16 @@ public class OpponentTest {
 		underTest = (CraftCharacter) applicationContext.getBean("craftCharacter");
 		spock = (Spock) applicationContext.getBean("spock");
 		MockitoAnnotations.initMocks(this);
+		
 	}
 	
-	@Test @Ignore
+	@Test
 	public void spockWillApplyStrengthModifierWhenHeAttacksOpponent() {
 		// This is turned off while I switch to Spring Annotations so that I can figure out how
 		// to inject a mock in for modifier
 		when(mockedDice.roll()).thenReturn(15);
 		when(mockModifier.modify(15)).thenReturn(17);
+		when(mockedArmor.getArmor()).thenReturn(10);
 		
 		spock.attack(mockedDice, underTest);
 		

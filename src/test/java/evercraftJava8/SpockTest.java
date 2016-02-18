@@ -3,19 +3,17 @@ package evercraftJava8;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.isA;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.*;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 public class SpockTest{
@@ -73,7 +71,7 @@ public class SpockTest{
 		
 		underTest.attack(mockedDice, mockedOpponent);
 		
-		verify(mockedOpponent, never()).isAttacked(mockedDice);
+		verify(mockedOpponent, never()).isAttacked(mockedDice.roll());
 	}
 	
 	@Test
@@ -85,7 +83,7 @@ public class SpockTest{
 		
 		underTest.attack(mockedDice, mockedOpponent);
 		
-		verify(mockedOpponent).isAttacked(mockedDice);
+		verify(mockedOpponent).isAttacked(mockedDice.roll());
 	}
 	
 	@Test
@@ -115,7 +113,7 @@ public class SpockTest{
 	
 		underTest.attack(mockedDice, mockedOpponent);
 		
-		verify(mockedOpponent).isAttacked(mockedDice);
+		verify(mockedOpponent).isAttacked(mockedDice.roll());
 	}
 	
 	@Test
@@ -126,7 +124,7 @@ public class SpockTest{
 		
 		underTest.attack(mockedDice, mockedOpponent);
 		
-		verify(mockedOpponent, never()).isAttacked(mockedDice);
+		verify(mockedOpponent, never()).isAttacked(mockedDice.roll());
 	}
 	
 	@Test
@@ -135,7 +133,7 @@ public class SpockTest{
 		when(mockedDice.roll()).thenReturn(15);
 		when(mockedArmor.getArmor()).thenReturn(10);
 		
-		underTest.isAttacked(mockedDice);
+		underTest.isAttacked(mockedDice.roll());
 		
 		assertThat(underTest.getHealth(), is(initialHealthReducedByOne));
 	}
@@ -145,7 +143,7 @@ public class SpockTest{
 		when(mockedDice.roll()).thenReturn(5);
 		when(mockedArmor.getArmor()).thenReturn(10);
 		
-		underTest.isAttacked(mockedDice);
+		underTest.isAttacked(mockedDice.roll());
 		
 		assertThat(underTest.getHealth(), is(INITIAL_HEALTH));
 	}
@@ -155,7 +153,7 @@ public class SpockTest{
 		int initialHealthReducedByTwo = 8;
 		when(mockedDice.roll()).thenReturn(20);
 		
-		underTest.isAttacked(mockedDice);
+		underTest.isAttacked(mockedDice.roll());
 		
 		assertThat(underTest.getHealth(), is(initialHealthReducedByTwo));
 	}
@@ -166,7 +164,7 @@ public class SpockTest{
 		when(mockedDice.roll()).thenReturn(20);
 		when(mockedArmor.getArmor()).thenReturn(20);
 		
-		underTest.isAttacked(mockedDice);
+		underTest.isAttacked(mockedDice.roll());
 		
 		assertThat(underTest.getHealth(), is(initial_health));
 	}
@@ -260,7 +258,7 @@ public class SpockTest{
 
 	private void attackedTimes(RollingDice dice, int times) {
 		for (int i = 0; i < times; i++)
-			underTest.isAttacked(dice);
+			underTest.isAttacked(dice.roll());
 	}
 	
 }
