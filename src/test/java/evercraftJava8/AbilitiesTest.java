@@ -3,6 +3,7 @@ package evercraftJava8;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -10,14 +11,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AbilitiesTest {
 
-	private ClassPathXmlApplicationContext applicationContext;
+	private AnnotationConfigApplicationContext applicationContext;
 	
 	@InjectMocks
 	private Abilities underTest;
 	
 	@Before
 	public void setup() {
-		applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
+		applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 		underTest = (Abilities) applicationContext.getBean("abilities");
 	}
 	

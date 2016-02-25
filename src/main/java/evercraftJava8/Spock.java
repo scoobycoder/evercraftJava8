@@ -1,5 +1,7 @@
 package evercraftJava8;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Spock extends CraftCharacter {
 	private String name = "Spock";
 	private Armor armor;
@@ -9,6 +11,7 @@ public class Spock extends CraftCharacter {
 	private KnittingFactory knittingFactory;
 	private Modifier modifier;
 
+	@Autowired
 	public Spock(Armor armor, Health startingHealth, Abilities abilities, Alignment alignment, KnittingFactory knittingFactory, Modifier modifier) {
 		super(armor, startingHealth, modifier);
 		this.armor = armor;
@@ -29,9 +32,11 @@ public class Spock extends CraftCharacter {
 		if (opponent.getArmor().getArmor() <= 0 && alignment.getGood() > alignment.getEvil()) {
 			
 		}
+	
+		int modifiedDice = modifyRoll(dice.roll());
 		
-		if (modifyRoll(dice.roll()) > opponent.getArmor().getArmor()) {
-			opponent.isAttacked(dice);
+		if (modifiedDice > opponent.getArmor().getArmor()) {
+			opponent.isAttacked(modifiedDice);
 		}
 	}
 
